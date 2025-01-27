@@ -1,15 +1,13 @@
 import { Route, Routes } from "react-router";
 import { DashboardLayout } from "./layouts";
+import { Home } from "./pages";
 
 export const App = () => {
   return (
     <Routes>
       {/* Rutas del Dashboard */}
       <Route path="/" element={<Home />} />
-      <Route element={<DashboardLayout />}>
-        <Route path="/dashboard/overview" element={<Overview />} />
-        <Route path="/dashboard/expenses" element={<Expenses />} />
-        <Route path="/dashboard/settings" element={<Settings />} />
+      <Route path="/dashboard" element={<DashboardLayout />}>
       </Route>
     </Routes>
   );
