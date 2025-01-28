@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  /* grey scale */
   --color-gray-50: #e9eaec;
   --color-gray-100: #d3d5da;
   --color-gray-200: #a3a9b2;
@@ -12,4 +13,43 @@
   --color-gray-800: #101113;
   --color-gray-900: #090a0b;
   --color-gray-950: #050506;
+
+  /* turquoise scale */
+  --niagara-50: #f0fdf9;
+  --niagara-100: #cafdee;
+  --niagara-200: #96f9de;
+  --niagara-300: #59efcb;
+  --niagara-400: #28d9b5;
+  --niagara-500: #0fbd9d;
+  --niagara-600: #09a087;
+  --niagara-700: #0c7969;
+  --niagara-800: #0e6155;
+  --niagara-900: #115047;
+  --niagara-950: #03302c;
+
+  /* rose scale */
+  --chestnut-rose-50: #fdf3f3;
+  --chestnut-rose-100: #fbe5e6;
+  --chestnut-rose-200: #f8d0d2;
+  --chestnut-rose-300: #f2afb2;
+  --chestnut-rose-400: #e98084;
+  --chestnut-rose-500: #d94c52;
+  --chestnut-rose-600: #c73b41;
+  --chestnut-rose-700: #a72e33;
+  --chestnut-rose-800: #8b292d;
+  --chestnut-rose-900: #74282b;
+  --chestnut-rose-950: #3e1113;
+
+  /* violet scale */
+  --wisteria-50: #faf8fc;
+  --wisteria-100: #f3eef9;
+  --wisteria-200: #ebe0f4;
+  --wisteria-300: #dac8ea;
+  --wisteria-400: #c2a4dc;
+  --wisteria-500: #a477c8;
+  --wisteria-600: #9564b9;
+  --wisteria-700: #7e50a0;
+  --wisteria-800: #6b4584;
+  --wisteria-900: #57396a;
+  --wisteria-950: #3a204b;
 }
