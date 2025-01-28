@@ -7,8 +7,7 @@ export const App = () => {
     <Routes>
       {/* Rutas del Dashboard */}
       <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={<DashboardLayout />}>
-      </Route>
+      <Route path="/dashboard" element={<DashboardLayout />} />
     </Routes>
   );
 };
