@@ -1,20 +1,30 @@
+import { useState } from "react";
+import { SidebarLink } from "./SidebarLink";
+
 export const Sidebar = () => {
+  const [activeLink, setActiveLink] = useState(null);
+
   return (
-    <>
-      <div className="flex">
-        <aside className="w-64 text-white bg-gray-800">
-          <nav>
-            <ul>
-              <li>
-                <a href="/dashboard/expenses">Expenses</a>
-              </li>
-              <li>
-                <a href="/dashboard/settings">Settings</a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
-      </div>
-    </>
+    <aside className="w-64 h-screen text-white bg-gray-800">
+      <nav>
+        <ul>
+          <SidebarLink
+            text="Panel principal"
+            isActive={activeLink === "Panel principal"}
+            onClick={() => setActiveLink("Panel principal")}
+          />
+          <SidebarLink
+            text="Gestionar gastos"
+            isActive={activeLink === "Gestionar gastos"}
+            onClick={() => setActiveLink("Gestionar gastos")}
+          />
+          <SidebarLink
+            text="Gestionar ingresos"
+            isActive={activeLink === "Gestionar ingresos"}
+            onClick={() => setActiveLink("Gestionar ingresos")}
+          />
+        </ul>
+      </nav>
+    </aside>
   );
 };
