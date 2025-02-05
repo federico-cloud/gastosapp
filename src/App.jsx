@@ -1,17 +1,21 @@
-import { Route, Routes } from "react-router";
-import { DashboardLayout } from "./layouts";
-import { Home, ManageExpenses } from "./pages";
+import { RouterAdapter } from "./adapters/RouterAdapter";
+import { DashboardLayout } from "./layouts/DashboardLayout";
+import { Home } from "./pages/Home";
+import { ManageExpenses } from "./pages/ManageExpenses";
 
 export const App = () => {
-  return (
-    <Routes>
-      {/* Rutas principales */}
+  const routes = [
+    {
+      path: "/dashboard",
+      element: <DashboardLayout />,
+      children: [
+        // Ruta index ("/dashboard")
+        { path: "", element: <Home/> },
+        // Ruta "/dashboard/manage-expenses"
+        { path: "manage-expenses", element: <ManageExpenses /> },
+      ],
+    },
+  ];
 
-      {/* Rutas del Dashboard */}
-      <Route path="/dashboard" element={<DashboardLayout />}>
-        <Route index element={<Home />} />
-        <Route path="/dashboard/manage-expenses" element={<ManageExpenses />} />
-      </Route>
-    </Routes>
-  );
+  return <RouterAdapter routes={routes} />;
 };
