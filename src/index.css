@@ -27,3 +27,7 @@
   --color-darkpurple-900: #050109;
   --color-darkpurple-950: #020104;
 }
+
+body {
+  @apply bg-darkpurple-500;
+}
