@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 
 /**
  * Adaptador para manejar las rutas de React Router.
@@ -14,5 +14,13 @@ export const RouterAdapter = ({ routes }) => {
         </Route>
       ))}
     </Routes>
+  );
+};
+
+export const NavLinkAdapter = ({ to, children, ...props }) => {
+  return (
+    <NavLink to={to} {...props}>
+      {children}
+    </NavLink>
   );
 };
