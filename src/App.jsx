@@ -1,7 +1,6 @@
-import { RouterAdapter } from "./adapters/RouterAdapter";
-import { DashboardLayout } from "./layouts/DashboardLayout";
-import { Home } from "./pages/Home";
-import { ManageExpenses } from "./pages/ManageExpenses";
+import { RouterAdapter } from "./adapters/";
+import { DashboardLayout } from "./layouts/";
+import { Home, ManageExpenses } from "./pages";
 
 export const App = () => {
   const routes = [
