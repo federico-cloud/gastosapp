@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { SidebarLink } from "./SidebarLink";
+import { SidebarProfile } from "./SidebarProfile";
 
 export const Sidebar = () => {
   const [activeLink, setActiveLink] = useState(null);
 
   return (
-    <aside className="fixed top-0 left-0 w-64 h-screen text-white bg-gray-800">
+    <aside className="fixed top-0 left-0 flex flex-col w-64 h-screen text-white bg-purple-500">
       <nav>
+        <SidebarProfile />
         <ul>
           <SidebarLink
             text="Panel principal"
