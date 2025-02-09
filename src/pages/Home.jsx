@@ -1,26 +1,15 @@
 import { MonthExpenses } from "../components";
-import { v4 as uuidv4 } from 'uuid';
+import { useMonths } from "../hooks";
 
 export const Home = () => {
-  const months = [
-    {id: uuidv4(), month:"Enero"},
-    {id: uuidv4(), month:"Febrero"},
-    {id: uuidv4(), month:"Marzo"},
-    {id: uuidv4(), month:"Abril"},
-    {id: uuidv4(), month:"Mayo"},
-    {id: uuidv4(), month:"Junio"},
-    {id: uuidv4(), month:"Julio"},
-    {id: uuidv4(), month:"Agosto"},
-    {id: uuidv4(), month:"Septiembre"},
-    {id: uuidv4(), month:"Octubre"},
-    {id: uuidv4(), month:"Noviembre"},
-    {id: uuidv4(), month:"Diciembre"},
-  ];
+  const { months, loading, error } = useMonths();
+  if (loading) return <p>Cargando...</p>;
+  if (error) return <p>Error al cargar los datos: {error.message}</p>;
 
   return (
     <>
-      {months.map(({id, month}) => (
-        <MonthExpenses key={id} month={month} />
+      {months.map(({ id, month, totalDays }) => (
+        <MonthExpenses key={id} month={month} totalDays={totalDays} />
       ))}
     </>
   );
