@@ -1,0 +1,125 @@
+{
+  "months": [
+    {
+      "id": "1",
+      "month": "Enero",
+      "totalDays": 31
+    },
+    {
+      "id": "2",
+      "month": "Febrero",
+      "totalDays": 28
+    },
+    {
+      "id": "3",
+      "month": "Marzo",
+      "totalDays": 31
+    },
+    {
+      "id": "4",
+      "month": "Abril",
+      "totalDays": 30
+    },
+    {
+      "id": "5",
+      "month": "Mayo",
+      "totalDays": 31
+    },
+    {
+      "id": "6",
+      "month": "Junio",
+      "totalDays": 30
+    },
+    {
+      "id": "7",
+      "month": "Julio",
+      "totalDays": 31
+    },
+    {
+      "id": "8",
+      "month": "Agosto",
+      "totalDays": 31
+    },
+    {
+      "id": "9",
+      "month": "Septiembre",
+      "totalDays": 30
+    },
+    {
+      "id": "10",
+      "month": "Octubre",
+      "totalDays": 31
+    },
+    {
+      "id": "11",
+      "month": "Noviembre",
+      "totalDays": 30
+    },
+    {
+      "id": "12",
+      "month": "Diciembre",
+      "totalDays": 31
+    }
+  ],
+  "years": [
+    {
+      "id": 2024,
+      "months": [
+        {
+          "monthId": 1,
+          "days": [
+            {
+              "id": 1,
+              "date": "2024-01-01",
+              "totalExpenses": 6200
+            },
+            {
+              "id": 2,
+              "date": "2024-01-02",
+              "totalExpenses": 0
+            }
+          ]
+        },
+        {
+          "monthId": 2,
+          "days": [
+            {
+              "id": 1,
+              "date": "2024-02-01",
+              "totalExpenses": 1500
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "expenses": [
+    {
+      "id": 1,
+      "yearId": 2024,
+      "monthId": 1,
+      "dayId": 1,
+      "category": "Alimentación",
+      "description": "Compra en el supermercado",
+      "amount": 1200
+    },
+    {
+      "id": 2,
+      "yearId": 2024,
+      "monthId": 1,
+      "dayId": 1,
+      "category": "Transporte",
+      "description": "Carga de combustible",
+      "amount": 5000
+    },
+    {
+      "id": 3,
+      "yearId": 2024,
+      "monthId": 2,
+      "dayId": 1,
+      "category": "Entretenimiento",
+      "description": "Netflix",
+      "amount": 1500
+    }
+  ]
+}
