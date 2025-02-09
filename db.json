@@ -1,62 +1,74 @@
 {
   "months": [
     {
-      "id": "1",
+      "monthId": 1,
+      "yearId": 2024,
       "month": "Enero",
       "totalDays": 31
     },
     {
-      "id": "2",
+      "monthId": 2,
+      "yearId": 2024,
       "month": "Febrero",
       "totalDays": 28
     },
     {
-      "id": "3",
+      "monthId": 3,
+      "yearId": 2024,
       "month": "Marzo",
       "totalDays": 31
     },
     {
-      "id": "4",
+      "monthId": 4,
+      "yearId": 2024,
       "month": "Abril",
       "totalDays": 30
     },
     {
-      "id": "5",
+      "monthId": 5,
+      "yearId": 2024,
       "month": "Mayo",
       "totalDays": 31
     },
     {
-      "id": "6",
+      "monthId": 6,
+      "yearId": 2024,
       "month": "Junio",
       "totalDays": 30
     },
     {
-      "id": "7",
+      "monthId": 7,
+      "yearId": 2024,
       "month": "Julio",
       "totalDays": 31
     },
     {
-      "id": "8",
+      "monthId": 8,
+      "yearId": 2024,
       "month": "Agosto",
       "totalDays": 31
     },
     {
-      "id": "9",
+      "monthId": 9,
+      "yearId": 2024,
       "month": "Septiembre",
       "totalDays": 30
     },
     {
-      "id": "10",
+      "monthId": 10,
+      "yearId": 2024,
       "month": "Octubre",
       "totalDays": 31
     },
     {
-      "id": "11",
+      "monthId": 11,
+      "yearId": 2024,
       "month": "Noviembre",
       "totalDays": 30
     },
     {
-      "id": "12",
+      "monthId": 12,
+      "yearId": 2024,
       "month": "Diciembre",
       "totalDays": 31
     }
