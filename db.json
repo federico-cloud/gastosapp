@@ -127,6 +127,24 @@
     {
       "id": 3,
       "yearId": 2024,
+      "monthId": 1,
+      "dayId": 5,
+      "category": "Supermercado",
+      "description": "Compra de viveres",
+      "amount": 9000
+    },
+    {
+      "id": 4,
+      "yearId": 2024,
+      "monthId": 1,
+      "dayId": 20,
+      "category": "Supermercado",
+      "description": "Compra de viveres",
+      "amount": 2000
+    },
+    {
+      "id": 5,
+      "yearId": 2024,
       "monthId": 2,
       "dayId": 1,
       "category": "Entretenimiento",
