@@ -26,6 +26,19 @@
   --color-darkpurple-800: #07020d;
   --color-darkpurple-900: #050109;
   --color-darkpurple-950: #020104;
+
+  /* Pink */
+  --color-turqo-50: #fef1f3;
+  --color-turqo-100: #fde2e7;
+  --color-turqo-200: #fcc5cf;
+  --color-turqo-300: #faa8b7;
+  --color-turqo-400: #f98b9f;
+  --color-turqo-500: #f76f87;
+  --color-turqo-600: #f32a4f;
+  --color-turqo-700: #cb0b2e;
+  --color-turqo-800: #87071f;
+  --color-turqo-900: #44040f;
+  --color-turqo-950: #220208;
 }
 
 body {
