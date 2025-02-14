@@ -31,3 +31,11 @@
 body {
   @apply bg-darkpurple-500;
 }
+
+.sidebar {
+  @apply fixed top-0 left-0 flex flex-col w-64 h-screen;
+}
+
+.container {
+  @apply flex items-center flex-col h-screen m-auto p-10;
+}
