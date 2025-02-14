@@ -1,26 +1,22 @@
-import { Link } from "react-router-dom";
-
 export const ManageExpenses = () => {
-  const expenses = [
-    { id: 1, name: "Compra en supermercado", category: "Super", amount: "$50" },
-    { id: 2, name: "Gasolina", category: "automovil", amount: "$30" },
-  ];
-
   return (
-    <div className="p-4">
-      <h1>Gestionar Gastos</h1>
-      <ul>
-        {expenses.map((expense) => (
-          <li key={expense.id} className="p-2 my-2 border">
-            <Link
-              to={`/dashboard/manage-expenses/${expense.id}`}
-            >
-              <p>Detalle: {expense.name}</p>
-              <p>Importe: {expense.amount}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+    <div className="container w-100%">
+      <h2></h2>
+      <table className="w-[80%] border-2">
+        <thead className="bg-turqo-800 border-2">
+          <th className="p-2 border-2">Fecha</th>
+          <th className="p-2 border-2">Categoria</th>
+          <th className="p-2 border-2">Monto</th>
+        </thead>
+        <tbody className="p-2 border-2">
+          <tr>
+            <td className="p-2 border-2">cosa</td>
+            <td className="p-2 border-2">cosa</td>
+            <td className="p-2 border-2">cosa</td>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };

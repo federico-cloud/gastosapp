@@ -17,12 +17,6 @@ export const Sidebar = () => {
             onClick={() => setActiveLink("Panel principal")}
           />
           <SidebarLink
-            text="Gestionar gastos"
-            href="/dashboard/manage-expenses"
-            isActive={activeLink === "Gestionar gastos"}
-            onClick={() => setActiveLink("Gestionar gastos")}
-          />
-          <SidebarLink
             text="Gestionar ingresos"
             href=""
             isActive={activeLink === "Gestionar ingresos"}
