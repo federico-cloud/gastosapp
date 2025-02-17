@@ -1,18 +1,20 @@
 import { useParams } from "react-router-dom";
-import { useExpensesByYear } from "../hooks/useExpensesByYear";
 import { ExpensesChart } from "../components/ExpensesChart";
 import { ManageExpenses } from "../pages/ManageExpenses";
+import { useExpensesByYear } from "../hooks";
 
 export const DetailsMonthExpenses = () => {
   const { year, month } = useParams();
+  const monthNum = Number(month);
+  const yearNum = Number(year);
+
   const { expensesByYear, loading, error } = useExpensesByYear({
-    year: Number(year),
+    year: yearNum,
   });
 
   if (loading) return <p className="text-white">Cargando gastos...</p>;
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
-  const monthNum = Number(month);
   const data = expensesByYear.filter((expense) => expense.monthId === monthNum);
 
   return (
@@ -21,7 +23,7 @@ export const DetailsMonthExpenses = () => {
         Detalles del Mes {month} - Año {year}
       </h1>
       <ExpensesChart data={data} />
-      <ManageExpenses />
+      <ManageExpenses year={yearNum} month={monthNum}/>
     </div>
   );
 };

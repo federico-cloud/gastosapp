@@ -1,20 +1,40 @@
-export const ManageExpenses = () => {
-  return (
-    <div className="container w-100%">
-      <h2></h2>
-      <table className="w-[80%] border-2">
-        <thead className="bg-turqo-800 border-2">
-          <th className="p-2 border-2">Fecha</th>
-          <th className="p-2 border-2">Categoria</th>
-          <th className="p-2 border-2">Monto</th>
-        </thead>
-        <tbody className="p-2 border-2">
-          <tr>
-            <td className="p-2 border-2">cosa</td>
-            <td className="p-2 border-2">cosa</td>
-            <td className="p-2 border-2">cosa</td>
+import { useExpensesByMonth } from "../hooks";
 
+export const ManageExpenses = ({ year, month }) => {
+  const { expensesByMonth, loading, error } = useExpensesByMonth({
+    year,
+    month,
+  });
+
+  if (loading) return <p className="text-white">Cargando gastos...</p>;
+  if (error) return <p className="text-red-500">Error: {error.message}</p>;
+
+  return (
+    <div className="container w-full">
+      <h2>Detalles de gastos por categoría</h2>
+      <table className="w-[80%] border-2 border-gray-500">
+        <thead className="text-white border-2 bg-turqo-800">
+          <tr>
+            <th className="p-2 border-2 border-black">Fecha</th>
+            <th className="p-2 border-2 border-black">Categoría</th>
+            <th className="p-2 border-2 border-black">Monto</th>
           </tr>
+        </thead>
+        <tbody>
+          {expensesByMonth.map(
+            ({ id, dayId, monthId, yearId, category, amount }) => (
+              <tr
+                key={id}
+                className="text-center bg-turqo-600 hover:bg-gray-500"
+              >
+                <td className="p-2 border-2 border-black">
+                  {dayId}/{monthId}/{yearId}
+                </td>
+                <td className="p-2 border-2 border-black">{category}</td>
+                <td className="p-2 border-2 border-black">${amount}</td>
+              </tr>
+            )
+          )}
         </tbody>
       </table>
     </div>
