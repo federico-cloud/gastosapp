@@ -119,7 +119,7 @@
       "id": 2,
       "yearId": 2024,
       "monthId": 1,
-      "dayId": 1,
+      "dayId": 15,
       "category": "Transporte",
       "description": "Carga de combustible",
       "amount": 5000
@@ -128,7 +128,7 @@
       "id": 3,
       "yearId": 2024,
       "monthId": 1,
-      "dayId": 5,
+      "dayId": 22,
       "category": "Supermercado",
       "description": "Compra de viveres",
       "amount": 9000
@@ -144,6 +144,15 @@
     },
     {
       "id": 5,
+      "yearId": 2024,
+      "monthId": 1,
+      "dayId": 26,
+      "category": "Entretenimiento",
+      "description": "Cine",
+      "amount": 20000
+    },
+    {
+      "id": 6,
       "yearId": 2024,
       "monthId": 2,
       "dayId": 1,
