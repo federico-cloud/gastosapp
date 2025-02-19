@@ -10,7 +10,6 @@ export const useExpensesByMonth = ({ year, month }) => {
     const fetchExpensesByMonth = async () => {
       try {
         const data = await expensesService.getExpensesByMonth(year, month);
-        console.log(data)
         setExpensesByMonth(data);
         setLoading(false);
       } catch (error) {
