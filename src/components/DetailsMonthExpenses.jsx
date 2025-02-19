@@ -18,12 +18,14 @@ export const DetailsMonthExpenses = () => {
   const data = expensesByYear.filter((expense) => expense.monthId === monthNum);
 
   return (
-    <div className="container text-white">
-      <h1 className="text-2xl font-bold mb-4">
+    <div className="text-white container-col">
+      <h1 className="text-2xl font-bold">
         Detalles del Mes {month} - Año {year}
       </h1>
-      <ExpensesChart data={data} />
-      <ManageExpenses year={yearNum} month={monthNum}/>
-    </div>
+      <div className="container items-center w-full h-screen container-row">
+          <ManageExpenses year={yearNum} month={monthNum} />
+          <ExpensesChart data={data} />
+        </div>
+      </div>
   );
 };
