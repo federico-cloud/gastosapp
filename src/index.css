@@ -49,6 +49,14 @@ body {
   @apply fixed top-0 left-0 flex flex-col w-64 h-screen;
 }
 
-.container {
-  @apply flex items-center flex-col h-screen m-auto p-10;
+.container-row {
+  @apply flex m-auto;
+}
+
+.container-col {
+  @apply flex flex-col;
+}
+
+.table-expenses {
+  @apply p-2 border-2 border-black;
 }
