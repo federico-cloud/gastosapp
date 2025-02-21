@@ -50,7 +50,7 @@ body {
 }
 
 .container-row {
-  @apply flex m-auto;
+  @apply flex m-auto p-2;
 }
 
 .container-col {
