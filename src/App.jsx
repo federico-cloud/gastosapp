@@ -1,7 +1,7 @@
 import { RouterAdapter } from "./adapters/";
 import { DetailsMonthExpenses } from "./components";
 import { DashboardLayout } from "./layouts/";
-import { Home, ManageExpenses } from "./pages";
+import { Home } from "./pages";
 
 export const App = () => {
   const routes = [
@@ -11,8 +11,7 @@ export const App = () => {
       children: [
         // Ruta index ("/dashboard")
         { path: "", element: <Home /> },
-        // Ruta "/dashboard/manage-expenses"
-        { path: "manage-expenses", element: <ManageExpenses /> },
+        // Ruta "/dashboard/view-expenses"
         {
           path: "view-expenses/:year/:month",
           element: <DetailsMonthExpenses />,
