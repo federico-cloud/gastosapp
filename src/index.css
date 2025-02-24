@@ -58,5 +58,5 @@ body {
 }
 
 .table-expenses {
-  @apply p-2 border-2 border-black;
+  @apply p-2 h-auto border-2 border-black;
 }
