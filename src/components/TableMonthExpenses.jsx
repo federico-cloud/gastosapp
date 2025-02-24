@@ -1,5 +1,3 @@
-import React from "react";
-
 export const TableMonthExpenses = ({ expensesByMonth, activeCategory }) => {
   // Filtrar los gastos por categoría si está seleccionada
   const filteredExpenses = activeCategory
@@ -20,15 +18,20 @@ export const TableMonthExpenses = ({ expensesByMonth, activeCategory }) => {
       {/* Cuerpo de la tabla */}
       <tbody>
         {filteredExpenses.length > 0 ? (
-          filteredExpenses.map(({ id, dayId, monthId, yearId, category, amount }) => (
-            <tr key={id} className="text-center bg-purple-400 hover:bg-gray-700">
-              <td className="table-expenses">
-                {dayId}/{monthId}/{yearId}
-              </td>
-              <td className="table-expenses">{category}</td>
-              <td className="table-expenses">${amount}</td>
-            </tr>
-          ))
+          filteredExpenses.map(
+            ({ id, dayId, monthId, yearId, category, amount }) => (
+              <tr
+                key={id}
+                className="text-center bg-purple-400 hover:bg-gray-700"
+              >
+                <td className="table-expenses">
+                  {dayId}/{monthId}/{yearId}
+                </td>
+                <td className="table-expenses">{category}</td>
+                <td className="table-expenses">${amount}</td>
+              </tr>
+            )
+          )
         ) : (
           <tr>
             <td colSpan="3" className="p-4 text-center text-gray-400">
