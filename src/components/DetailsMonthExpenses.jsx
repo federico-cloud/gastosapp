@@ -23,11 +23,29 @@ export const DetailsMonthExpenses = () => {
     [expensesByMonth]
   );
 
+  // Filtrar gastos por categoría
+  const filteredExpensesByCategory = useMemo(() => {
+    return activeCategory
+      ? expensesByMonth.filter(({ category }) => category === activeCategory)
+      : expensesByMonth;
+  }, [expensesByMonth, activeCategory]);
+
   // Obtener categorías únicas
   const uniqueCategories = useMemo(
-    () => ["Todos", ...new Set(expensesByMonth.map((expense) => expense.category))],
+    () => [
+      "Todos",
+      ...new Set(expensesByMonth.map((expense) => expense.category)),
+    ],
     [expensesByMonth]
   );
+
+  // Calcular total de gastos por categoría
+  const totalExpensesByCategory = useMemo(() => {
+    return filteredExpensesByCategory.reduce(
+      (acc, { amount }) => acc + amount,
+      0
+    );
+  }, [filteredExpensesByCategory, activeCategory]);
 
   // Manejar clic en categorías
   const handleActiveCategory = (event) => {
@@ -39,16 +57,22 @@ export const DetailsMonthExpenses = () => {
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   return (
-    <div className="p-6 text-white container-col">
+    <div className="px-20 text-white container-col">
       {/* Título */}
       <h1 className="p-2 text-5xl font-bold text-center">
         Detalles del Mes {month} - Año {year}
       </h1>
 
       {/* Total Gastos */}
-      <p className="p-4 text-5xl italic text-center">
-        Total de gastos: ${totalMonthExpenses}
-      </p>
+      {activeCategory ? (
+        <p className="p-4 text-5xl italic text-center">
+          Total de gastos de {activeCategory} : ${totalExpensesByCategory}
+        </p>
+      ) : (
+        <p className="p-4 text-5xl italic text-center">
+          Total de gastos: ${totalMonthExpenses}
+        </p>
+      )}
 
       {/* Filtros de Categoría */}
       <ul className="flex-wrap justify-around w-[60%] container-row">
@@ -57,7 +81,7 @@ export const DetailsMonthExpenses = () => {
             key={category}
             data-category={category}
             className={`py-4 hover:cursor-pointer ${
-              activeCategory === category ? "font-bold text-teal-400" : ""
+              activeCategory === category ? "font-bold text-turqo-600" : ""
             }`}
             onClick={handleActiveCategory}
           >
@@ -65,14 +89,18 @@ export const DetailsMonthExpenses = () => {
           </li>
         ))}
       </ul>
+      <div className="h-100">
+        <ExpensesChart
+          data={activeCategory ? filteredExpensesByCategory : expensesByMonth}
+        />
+      </div>
 
       {/* Tabla y Gráfico */}
-      <div className="w-full h-[600px] container-row">
+      <div className="w-full container-row">
         <TableMonthExpenses
           expensesByMonth={expensesByMonth}
           activeCategory={activeCategory}
         />
-        <ExpensesChart data={expensesByMonth} />
       </div>
     </div>
   );
