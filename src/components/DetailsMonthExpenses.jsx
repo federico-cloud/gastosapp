@@ -3,14 +3,21 @@ import { ExpensesChart } from "../components/ExpensesChart";
 import { useExpensesByMonth } from "../hooks";
 import { useState, useMemo } from "react";
 import { TableMonthExpenses } from "./TableMonthExpenses";
+import { NewExpenseForm } from "./NewExpenseForm";
 
 export const DetailsMonthExpenses = () => {
   const [activeCategory, setActiveCategory] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { year, month } = useParams();
   const monthNum = Number(month);
   const yearNum = Number(year);
 
+  // Función para abrir y cerrar el pop-up
+  const handlePopup = () => {
+    setIsOpen(!isOpen);  
+  }
+  
   // Obtener los gastos del mes
   const { expensesByMonth, loading, error } = useExpensesByMonth({
     year: yearNum,
@@ -75,12 +82,12 @@ export const DetailsMonthExpenses = () => {
       )}
 
       {/* Filtros de Categoría */}
-      <ul className="flex-wrap justify-around w-[60%] container-row">
+      <ul className="flex-wrap justify-around w-[70%] container-row">
         {uniqueCategories.map((category) => (
           <li
             key={category}
             data-category={category}
-            className={`py-4 hover:cursor-pointer ${
+            className={`p-4 hover:cursor-pointer ${
               activeCategory === category ? "font-bold text-turqo-600" : ""
             }`}
             onClick={handleActiveCategory}
@@ -89,11 +96,18 @@ export const DetailsMonthExpenses = () => {
           </li>
         ))}
       </ul>
-      <div className="h-100">
+      
+      <div className="h-100 min-w-[500px]">
         <ExpensesChart
           data={activeCategory ? filteredExpensesByCategory : expensesByMonth}
         />
       </div>
+      
+      <button className="m-2 ml-auto btn-primary" onClick={handlePopup}>
+        Agregar gasto
+      </button>
+      {isOpen && <NewExpenseForm togglePopup={handlePopup} />}
+
 
       {/* Tabla y Gráfico */}
       <div className="w-full container-row">
