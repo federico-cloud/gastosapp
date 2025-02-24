@@ -60,3 +60,11 @@ body {
 .table-expenses {
   @apply p-2 h-auto border-2 border-black;
 }
+
+.btn-primary {
+  @apply w-60 bg-turqo-500 text-white p-2 rounded-md hover:cursor-pointer hover:bg-turqo-700;
+}
+
+.btn-secondary {
+  @apply w-60 p-2 font-bold text-white rounded-lg bg-turqo-500 hover:bg-turqo-700 hover:cursor-pointer;
+}
