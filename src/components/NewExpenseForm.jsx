@@ -1,3 +1,5 @@
+import { MdClose } from "react-icons/md";
+
 export const NewExpenseForm = ({ togglePopup }) => {
 
   return (
@@ -8,7 +10,7 @@ export const NewExpenseForm = ({ togglePopup }) => {
           onClick={togglePopup}
           className="absolute text-xl text-gray-500 top-2 right-2 hover:text-turqo-500 hover:cursor-pointer"
         >
-          ✖
+          <MdClose className="text-4xl"/>
         </button>
 
         {/* Contenido del Pop-Up */}
