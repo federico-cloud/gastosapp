@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarProfile } from "./SidebarProfile";
+import { MdOutlineGroupAdd } from "react-icons/md";
+import { GiMoneyStack } from "react-icons/gi";
+import { IoExitOutline, IoBuildOutline, IoHomeOutline } from "react-icons/io5";
 
 export const Sidebar = ({ displayMenu }) => {
   const [activeLink, setActiveLink] = useState("");
@@ -23,15 +26,31 @@ export const Sidebar = ({ displayMenu }) => {
             href="/dashboard"
             onClick={handleClick}
             activeLink={activeLink}
+            icon={<IoHomeOutline className="text-3xl" />}
           />
-          <SidebarLink text="Gestionar ingresos" href="" />
-          <SidebarLink text="Crear proyecto" href="" />
-          <SidebarLink text="Crear grupo" href="" />
+          <SidebarLink
+            text="Gestionar ingresos"
+            href=""
+            icon={<GiMoneyStack className="text-3xl"/>}
+          />
+          <SidebarLink
+            text="Crear proyecto"
+            href=""
+            icon={<IoBuildOutline className="text-3xl" />}
+          />
+          <SidebarLink
+            text="Crear grupo"
+            href=""
+            icon={<MdOutlineGroupAdd className="text-3xl" />}
+          />
         </ul>
 
-        {/* Botón de Cerrar Sesión al final */}
         <div className="mt-auto list-none">
-          <SidebarLink text="Cerrar sesión" href="" />
+          <SidebarLink
+            text="Cerrar sesión"
+            href=""
+            icon={<IoExitOutline className="text-3xl" />}
+          />
         </div>
       </nav>
     </aside>
