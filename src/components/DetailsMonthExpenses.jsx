@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { ExpensesChart } from "../components/ExpensesChart";
 import { useExpensesByMonth } from "../hooks";
 import { useState, useMemo } from "react";
 import { TableMonthExpenses } from "./TableMonthExpenses";
 import { NewExpenseForm } from "./NewExpenseForm";
+import { LineChartMultipleAdapter } from "../adapters/ChartAdapter";
 
 export const DetailsMonthExpenses = () => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -98,7 +98,7 @@ export const DetailsMonthExpenses = () => {
       </ul>
       
       <div className="h-100 min-w-[500px]">
-        <ExpensesChart
+        <LineChartMultipleAdapter
           data={activeCategory ? filteredExpensesByCategory : expensesByMonth}
         />
       </div>
