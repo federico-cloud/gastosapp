@@ -1,4 +1,10 @@
-import { scaleTime, scaleLinear, max, line as d3_line, curveMonotoneX } from "d3";
+import {
+  scaleTime,
+  scaleLinear,
+  max,
+  line as d3_line,
+  curveMonotoneX,
+} from "d3";
 
 const sales = [
   { date: "2023-04-30", value: 4 },
@@ -29,7 +35,7 @@ const sales2 = [
 const data = sales.map((d) => ({ ...d, date: new Date(d.date) }));
 const data2 = sales2.map((d) => ({ ...d, date: new Date(d.date) }));
 
-export const LineChartMultipleAdapter = () => {
+export const MultipleLineChartAdapter = ({ data }) => {
   const xScale = scaleTime()
     .domain([data[0].date, data[data.length - 1].date])
     .range([0, 100]);
@@ -61,9 +67,7 @@ export const LineChartMultipleAdapter = () => {
       }}
     >
       {/* Y axis */}
-      <div
-        className="absolute inset-0 h-[calc(100%-var(--marginTop)-var(--marginBottom))] w-[var(--marginLeft)] translate-y-[var(--marginTop)] overflow-visible"
-      >
+      <div className="absolute inset-0 h-[calc(100%-var(--marginTop)-var(--marginBottom))] w-[var(--marginLeft)] translate-y-[var(--marginTop)] overflow-visible">
         {yScale.ticks(8).map((value, i) => (
           <div
             key={i}
@@ -76,10 +80,12 @@ export const LineChartMultipleAdapter = () => {
       </div>
 
       {/* Chart area */}
-      <div
-        className="absolute inset-0 h-[calc(100%-var(--marginTop)-var(--marginBottom))] w-[calc(100%-var(--marginLeft)-var(--marginRight))] translate-x-[var(--marginLeft)] translate-y-[var(--marginTop)] overflow-visible"
-      >
-        <svg viewBox="0 0 100 100" className="overflow-visible w-full h-full" preserveAspectRatio="none">
+      <div className="absolute inset-0 h-[calc(100%-var(--marginTop)-var(--marginBottom))] w-[calc(100%-var(--marginLeft)-var(--marginRight))] translate-x-[var(--marginLeft)] translate-y-[var(--marginTop)] overflow-visible">
+        <svg
+          viewBox="0 0 100 100"
+          className="overflow-visible w-full h-full"
+          preserveAspectRatio="none"
+        >
           {/* Grid lines */}
           {yScale.ticks(8).map((value, i) => (
             <g
@@ -87,12 +93,31 @@ export const LineChartMultipleAdapter = () => {
               className="text-zinc-300 dark:text-zinc-700"
               key={i}
             >
-              <line x1={0} x2={100} stroke="currentColor" strokeDasharray="6,5" strokeWidth={0.5} vectorEffect="non-scaling-stroke" />
+              <line
+                x1={0}
+                x2={100}
+                stroke="currentColor"
+                strokeDasharray="6,5"
+                strokeWidth={0.5}
+                vectorEffect="non-scaling-stroke"
+              />
             </g>
           ))}
           {/* Line */}
-          <path d={d} fill="none" className="stroke-violet-400" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-          <path d={d2} fill="none" className="stroke-fuchsia-400" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+          <path
+            d={d}
+            fill="none"
+            className="stroke-violet-400"
+            strokeWidth="2"
+            vectorEffect="non-scaling-stroke"
+          />
+          <path
+            d={d2}
+            fill="none"
+            className="stroke-fuchsia-400"
+            strokeWidth="2"
+            vectorEffect="non-scaling-stroke"
+          />
 
           {/* Circles */}
           {data.map((d, index) => (
@@ -134,11 +159,16 @@ export const LineChartMultipleAdapter = () => {
                   style={{
                     left: `${xScale(day.date)}%`,
                     top: "100%",
-                    transform: `translateX(${i === 0 ? "0%" : i === data.length - 1 ? "-100%" : "-50%"})`,
+                    transform: `translateX(${
+                      i === 0 ? "0%" : i === data.length - 1 ? "-100%" : "-50%"
+                    })`,
                   }}
                   className="text-xs absolute"
                 >
-                  {day.date.toLocaleDateString("en-US", { month: "numeric", day: "numeric" })}
+                  {day.date.toLocaleDateString("en-US", {
+                    month: "numeric",
+                    day: "numeric",
+                  })}
                 </div>
               </div>
             );
@@ -147,4 +177,4 @@ export const LineChartMultipleAdapter = () => {
       </div>
     </div>
   );
-}
+};
