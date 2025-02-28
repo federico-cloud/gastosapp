@@ -3,7 +3,7 @@ import { useExpensesByMonth } from "../hooks";
 import { useState, useMemo } from "react";
 import { TableMonthExpenses } from "./TableMonthExpenses";
 import { NewExpenseForm } from "./NewExpenseForm";
-import { LineChartMultipleAdapter } from "../adapters/ChartAdapter";
+import { MultipleLineChartAdapter } from "../adapters/MultipleLineChartAdapter";
 
 export const DetailsMonthExpenses = () => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -15,9 +15,9 @@ export const DetailsMonthExpenses = () => {
 
   // Función para abrir y cerrar el pop-up
   const handlePopup = () => {
-    setIsOpen(!isOpen);  
-  }
-  
+    setIsOpen(!isOpen);
+  };
+
   // Obtener los gastos del mes
   const { expensesByMonth, loading, error } = useExpensesByMonth({
     year: yearNum,
@@ -96,18 +96,17 @@ export const DetailsMonthExpenses = () => {
           </li>
         ))}
       </ul>
-      
+
       <div className="h-100 min-w-[500px]">
-        <LineChartMultipleAdapter
+        <MultipleLineChartAdapter
           data={activeCategory ? filteredExpensesByCategory : expensesByMonth}
         />
       </div>
-      
+
       <button className="m-2 ml-auto btn-primary" onClick={handlePopup}>
         Agregar gasto
       </button>
       {isOpen && <NewExpenseForm togglePopup={handlePopup} />}
-
 
       {/* Tabla y Gráfico */}
       <div className="w-full container-row">
