@@ -97,7 +97,8 @@ export const DetailsMonthExpenses = () => {
         ))}
       </ul>
 
-      <div className="h-100 min-w-[500px]">
+      {/* Grafico */}
+      <div className="w-full">
         <MultipleLineChartAdapter
           data={activeCategory ? filteredExpensesByCategory : expensesByMonth}
         />
@@ -108,7 +109,7 @@ export const DetailsMonthExpenses = () => {
       </button>
       {isOpen && <NewExpenseForm togglePopup={handlePopup} />}
 
-      {/* Tabla y Gráfico */}
+      {/* Tabla */}
       <div className="w-full container-row">
         <TableMonthExpenses
           expensesByMonth={expensesByMonth}
