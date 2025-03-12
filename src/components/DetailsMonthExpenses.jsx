@@ -6,7 +6,7 @@ import { NewExpenseForm } from "./NewExpenseForm";
 import { MultipleLineChartAdapter } from "../adapters/MultipleLineChartAdapter";
 
 export const DetailsMonthExpenses = () => {
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeCategories, setActiveCategories] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
   const { year, month } = useParams();
@@ -32,10 +32,10 @@ export const DetailsMonthExpenses = () => {
 
   // Filtrar gastos por categoría
   const filteredExpensesByCategory = useMemo(() => {
-    return activeCategory
-      ? expensesByMonth.filter(({ category }) => category === activeCategory)
+    return activeCategories
+      ? expensesByMonth.filter(({ category }) => category === activeCategories)
       : expensesByMonth;
-  }, [expensesByMonth, activeCategory]);
+  }, [expensesByMonth, activeCategories]);
 
   // Obtener categorías únicas
   const uniqueCategories = useMemo(
@@ -52,12 +52,18 @@ export const DetailsMonthExpenses = () => {
       (acc, { amount }) => acc + amount,
       0
     );
-  }, [filteredExpensesByCategory, activeCategory]);
+  }, [filteredExpensesByCategory, activeCategories]);
 
   // Manejar clic en categorías
   const handleActiveCategory = (event) => {
     const category = event.target.dataset.category;
-    setActiveCategory(category.toLowerCase() === "todos" ? null : category);
+    if (!activeCategories.includes(category)) {
+      setActiveCategories([...activeCategories, category]);
+    }
+
+    if (category === "todos") {
+      setActiveCategories([]);
+    }
   };
 
   if (loading) return <p className="text-white">Cargando gastos...</p>;
@@ -71,14 +77,15 @@ export const DetailsMonthExpenses = () => {
       </h1>
 
       {/* Total Gastos */}
-      {activeCategory ? (
+      {activeCategories.length < 2 ? (
         <p className="p-4 text-5xl italic text-center">
-          Total de gastos de {activeCategory} : ${totalExpensesByCategory}
+          Total de gastos de {activeCategories} : ${totalExpensesByCategory}
         </p>
       ) : (
-        <p className="p-4 text-5xl italic text-center">
-          Total de gastos: ${totalMonthExpenses}
-        </p>
+        null
+        // <p className="p-4 text-5xl italic text-center">
+        //   Gastos en {activeCategories.map((category) => (  ))}
+        // </p>
       )}
 
       {/* Filtros de Categoría */}
@@ -88,7 +95,9 @@ export const DetailsMonthExpenses = () => {
             key={category}
             data-category={category}
             className={`p-4 hover:cursor-pointer ${
-              activeCategory === category ? "font-bold text-turqo-600" : ""
+              activeCategories.includes(category)
+                ? "font-bold text-turqo-600"
+                : "text-white"
             }`}
             onClick={handleActiveCategory}
           >
@@ -100,7 +109,7 @@ export const DetailsMonthExpenses = () => {
       {/* Grafico */}
       <div className="w-full">
         <MultipleLineChartAdapter
-          data={activeCategory ? filteredExpensesByCategory : expensesByMonth}
+          data={activeCategories ? filteredExpensesByCategory : expensesByMonth}
         />
       </div>
 
@@ -113,7 +122,7 @@ export const DetailsMonthExpenses = () => {
       <div className="w-full container-row">
         <TableMonthExpenses
           expensesByMonth={expensesByMonth}
-          activeCategory={activeCategory}
+          activeCategory={activeCategories}
         />
       </div>
     </div>
