@@ -1,72 +1,43 @@
 import { useParams } from "react-router-dom";
-import { useExpensesByMonth } from "../hooks";
 import { useState, useMemo } from "react";
-import { TableMonthExpenses } from "./TableMonthExpenses";
-import { NewExpenseForm } from "./NewExpenseForm";
-import { MultipleLineChartAdapter } from "../adapters/MultipleLineChartAdapter";
+import { MultipleLineChartAdapter } from "../adapters/";
+import { useCategories, useExpensesByMonth } from "../hooks/";
+import {
+  CategoryFilters,
+  NewExpenseForm,
+  TableMonthExpenses,
+} from "../components";
 
 export const DetailsMonthExpenses = () => {
-  const [activeCategories, setActiveCategories] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-
   const { year, month } = useParams();
   const monthNum = Number(month);
   const yearNum = Number(year);
 
-  // Función para abrir y cerrar el pop-up
-  const handlePopup = () => {
-    setIsOpen(!isOpen);
-  };
-
-  // Obtener los gastos del mes
   const { expensesByMonth, loading, error } = useExpensesByMonth({
     year: yearNum,
     month: monthNum,
   });
 
-  // Calcular total de gastos del mes
-  const totalMonthExpenses = useMemo(
-    () => expensesByMonth.reduce((acc, { amount }) => acc + amount, 0),
-    [expensesByMonth]
-  );
+  const { activeCategories, uniqueCategories, handleActiveCategory } =
+    useCategories(expensesByMonth);
 
-  // Filtrar gastos por categoría
   const filteredExpensesByCategory = useMemo(() => {
-    return activeCategories
-      ? expensesByMonth.filter(({ category }) => category === activeCategories)
-      : expensesByMonth;
+    if (activeCategories.length === 0) return expensesByMonth;
+    return expensesByMonth.filter(({ category }) =>
+      activeCategories.includes(category)
+    );
   }, [expensesByMonth, activeCategories]);
 
-  // Obtener categorías únicas
-  const uniqueCategories = useMemo(
-    () => [
-      "Todos",
-      ...new Set(expensesByMonth.map((expense) => expense.category)),
-    ],
-    [expensesByMonth]
+  const totalExpensesByCategory = useMemo(
+    () =>
+      filteredExpensesByCategory.reduce((acc, { amount }) => acc + amount, 0),
+    [filteredExpensesByCategory]
   );
 
-  // Calcular total de gastos por categoría
-  const totalExpensesByCategory = useMemo(() => {
-    return filteredExpensesByCategory.reduce(
-      (acc, { amount }) => acc + amount,
-      0
-    );
-  }, [filteredExpensesByCategory, activeCategories]);
-
-  // Manejar clic en categorías
-  const handleActiveCategory = (event) => {
-    const category = event.target.dataset.category;
-    if (!activeCategories.includes(category)) {
-      setActiveCategories([...activeCategories, category]);
-    }
-
-    if (category === "todos") {
-      setActiveCategories([]);
-    }
-  };
-
+  // Spinner de carga
   if (loading) return <p className="text-white">Cargando gastos...</p>;
+  // Manejo de errores
   if (error) return <p className="text-red-500">Error: {error.message}</p>;
 
   return (
@@ -76,49 +47,37 @@ export const DetailsMonthExpenses = () => {
         Detalles del Mes {month} - Año {year}
       </h1>
 
-      {/* Total Gastos */}
-      {activeCategories.length < 2 ? (
-        <p className="p-4 text-5xl italic text-center">
-          Total de gastos de {activeCategories} : ${totalExpensesByCategory}
-        </p>
-      ) : (
-        null
-        // <p className="p-4 text-5xl italic text-center">
-        //   Gastos en {activeCategories.map((category) => (  ))}
-        // </p>
-      )}
+      {/* Total de gastos */}
+      <p className="p-4 text-5xl italic text-center">
+        {activeCategories.length === 0
+          ? `Total de gastos: $${totalExpensesByCategory}`
+          : `Gastos en ${activeCategories.join(
+              ", "
+            )}: $${totalExpensesByCategory}`}
+      </p>
 
-      {/* Filtros de Categoría */}
-      <ul className="flex-wrap justify-around w-[70%] container-row">
-        {uniqueCategories.map((category) => (
-          <li
-            key={category}
-            data-category={category}
-            className={`p-4 hover:cursor-pointer ${
-              activeCategories.includes(category)
-                ? "font-bold text-turqo-600"
-                : "text-white"
-            }`}
-            onClick={handleActiveCategory}
-          >
-            {category}
-          </li>
-        ))}
-      </ul>
+      {/* Filtros de categoría */}
+      <CategoryFilters
+        categories={uniqueCategories}
+        activeCategories={activeCategories}
+        onCategoryClick={handleActiveCategory}
+      />
 
-      {/* Grafico */}
+      {/* Gráfico de líneas */}
       <div className="w-full">
-        <MultipleLineChartAdapter
-          data={activeCategories ? filteredExpensesByCategory : expensesByMonth}
-        />
+        <MultipleLineChartAdapter data={filteredExpensesByCategory} />
       </div>
 
-      <button className="m-2 ml-auto btn-primary" onClick={handlePopup}>
+      {/* Botón para agregar gasto */}
+      <button
+        className="m-2 ml-auto btn-primary"
+        onClick={() => setIsOpen(true)}
+      >
         Agregar gasto
       </button>
-      {isOpen && <NewExpenseForm togglePopup={handlePopup} />}
+      {isOpen && <NewExpenseForm togglePopup={() => setIsOpen(false)} />}
 
-      {/* Tabla */}
+      {/* Tabla de gastos */}
       <div className="w-full container-row">
         <TableMonthExpenses
           expensesByMonth={expensesByMonth}
