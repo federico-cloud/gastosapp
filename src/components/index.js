@@ -5,3 +5,4 @@ export { MonthExpenses } from "./MonthExpenses";
 export { DetailsMonthExpenses } from "./DetailsMonthExpenses";
 export { TableMonthExpenses } from "./TableMonthExpenses";
 export { NewExpenseForm } from "./NewExpenseForm";
+export { CategoryFilters } from "./CategoryFilters";
